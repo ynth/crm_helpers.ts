@@ -1,4 +1,4 @@
-namespace Mediahuis.Data {
+namespace CompanyName.Data {
     /**
      * Retrieve a record from the web api
      * @param entityName The name of the entity without the trailing 's'
