@@ -1,4 +1,4 @@
-namespace Helpers.Data {
+namespace Mediahuis.Data {
     /**
      * Retrieve a record from the web api
      * @param entityName The name of the entity without the trailing 's'
@@ -27,7 +27,7 @@ namespace Helpers.Data {
         }
 
         var req = new XMLHttpRequest();
-        var clientURL = Helpers.GlobalHelper.GetContext().getClientUrl();
+        var clientURL = GlobalHelper.GetContext().getClientUrl();
         req.open("GET", encodeURI(clientURL + "/api/data/v9.2/" + entityName + "(" + id + ")?" + select), false);
         req.setRequestHeader("Accept", "application/json");
         req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -40,7 +40,7 @@ namespace Helpers.Data {
 
     export function RetrieveWithCustomFilter(urlEnding: string) {
         var req = new XMLHttpRequest();
-        var clientURL = Helpers.GlobalHelper.GetContext().getClientUrl();
+        var clientURL = GlobalHelper.GetContext().getClientUrl();
         req.open("GET", clientURL + "/api/data/v9.2/" + urlEnding, false);
         req.setRequestHeader("Accept", "application/json");
         req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -84,8 +84,8 @@ namespace Helpers.Data {
     export function RetrieveWithCustomFilterAsync(urlEnding: string) {
         return new Promise((resolve: (records: Array<any>) => any, reject: (statusText: string) => any) => {
             var req = new XMLHttpRequest();
-            req.open("GET", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
-            req.setRequestHeader("Accept", "application/json");
+            req.open("GET", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
+            req.setRequestHeader("Accept", "application/json");v
             req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             req.setRequestHeader("OData-MaxVersion", "4.0");
             req.setRequestHeader("OData-Version", "4.0");
@@ -121,7 +121,7 @@ namespace Helpers.Data {
             }
 
             var req = new XMLHttpRequest();
-            req.open("GET", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
+            req.open("GET", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
             req.setRequestHeader("OData-MaxVersion", "4.0");
             req.setRequestHeader("OData-Version", "4.0");
             req.setRequestHeader("Accept", "application/json");
@@ -208,7 +208,7 @@ namespace Helpers.Data {
     export function UpdateAsync(urlEnding: string, entity: {}) {
         return new Promise((resolve: (succes: Boolean) => any, reject: (statusText: string) => any) => {
             var req = new XMLHttpRequest();
-            req.open("PATCH", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
+            req.open("PATCH", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
             req.setRequestHeader("OData-MaxVersion", "4.0");
             req.setRequestHeader("OData-Version", "4.0");
             req.setRequestHeader("Accept", "application/json");
@@ -234,7 +234,7 @@ namespace Helpers.Data {
             entityName = entityName + "s";
 
             var req = new XMLHttpRequest();
-            req.open("POST", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + entityName, true);
+            req.open("POST", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + entityName, true);
             req.setRequestHeader("Accept", "application/json");
             req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             req.setRequestHeader("OData-MaxVersion", "4.0");
@@ -260,7 +260,7 @@ namespace Helpers.Data {
     export function AssociateRecord(urlEnding: string, association: Object) {
         return new Promise((resolve: (succes: boolean) => any, reject: (statusText: string) => any) => {
             var req = new XMLHttpRequest();
-            req.open("POST", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
+            req.open("POST", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
             req.setRequestHeader("Accept", "application/json");
             req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             req.setRequestHeader("OData-MaxVersion", "4.0");
@@ -284,7 +284,7 @@ namespace Helpers.Data {
     export function DisassociateRecord(urlEnding: string) {
         return new Promise((resolve: (succes: boolean) => any, reject: (statusText: string) => any) => {
             var req = new XMLHttpRequest();
-            req.open("DELETE", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
+            req.open("DELETE", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + urlEnding, true);
             req.setRequestHeader("Accept", "application/json");
             req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             req.setRequestHeader("OData-MaxVersion", "4.0");
@@ -308,7 +308,7 @@ namespace Helpers.Data {
     export function ExecuteGlobalAction<T>(customActionName: string, parameters: {}): Promise<T> {
         return new Promise((resolve: (result: T) => any, reject: (statusText: string) => any) => {
             var req = new XMLHttpRequest();
-            req.open("POST", Helpers.GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + customActionName, true);
+            req.open("POST", GlobalHelper.GetContext().getClientUrl() + "/api/data/v9.2/" + customActionName, true);
             req.setRequestHeader("Accept", "application/json");
             req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             req.setRequestHeader("OData-MaxVersion", "4.0");
@@ -334,7 +334,7 @@ namespace Helpers.Data {
         return new Promise((resolve: (result: T) => any, reject: (statusText: string) => any) => {
 
             var req = new XMLHttpRequest();
-            req.open("POST", `${Helpers.GlobalHelper.GetContext().getClientUrl()}/api/data/v9.2/${entityName}s(${id.cleanGuid()})/Microsoft.Dynamics.CRM.${actionName}`, true);
+            req.open("POST", `${GlobalHelper.GetContext().getClientUrl()}/api/data/v9.2/${entityName}s(${id.cleanGuid()})/Microsoft.Dynamics.CRM.${actionName}`, true);
             req.setRequestHeader("Accept", "application/json");
             req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
             req.setRequestHeader("OData-MaxVersion", "4.0");
